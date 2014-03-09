@@ -1,0 +1,77 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "antennaState" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+            "frames" : 1,
+            "cycle" : 0.15
+          },
+          "active" : {
+            "frames" : 4,
+            "cycle" : 0.7,
+            "mode" : "loop"
+          }
+        }
+      },
+	  "signalState" : {
+	    "default" : "idle",
+        "states" : {
+          "idle" : { },
+          "active" : {
+            "frames" : 1,
+            "cycle" : 0.15
+          }
+        }
+	  }
+    },
+
+    "parts" : {
+      "antenna" : {
+        "properties" : {
+          "centered" : false,
+		  "zLevel" : 0
+        },
+
+        "partStates" : {
+          "antennaState" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:default.default"
+              }
+            },
+
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:default.<frame>"
+              }
+            }
+          }
+        }
+      },
+	  "signal" : {
+        "properties" : {
+          "centered" : false,
+		  "zLevel" : 0.5
+        },
+
+        "partStates" : {
+          "signalState" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:off"
+              }
+            },
+
+            "active" : {
+              "properties" : {
+                "image" : "<partImage>:signalled"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

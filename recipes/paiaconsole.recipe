@@ -1,0 +1,10 @@
+{
+  "input" : [
+    { "item" : "money", "count" : 1 }
+  ],
+  "output" : {
+    "item" : "paiaconsole",
+    "count" : 1
+  },
+  "groups" : [ "mod", "plain", "paia", "objects", "all" ]
+}

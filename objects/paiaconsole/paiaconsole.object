@@ -1,0 +1,42 @@
+{
+  "objectName" : "paiaconsole",
+  "rarity" : "Common",
+  "objectType" : "wire",
+  "description" : "A high-tech Pearias console. Construct a Personal Artificial Intelligence Assistant.",
+  "shortdescription" : "P.A.I.A Console",
+  "race" : "generic",
+  "category" : "tools",
+  "price" : 500,
+  "printable" : false,
+  
+  "apexDescription" : "I wonder what this switch does...",
+  "avianDescription" : "Does something happen if I push the button?",
+  "floranDescription" : "Ssswirling light. Like firefly in a jar.",
+  "glitchDescription" : "Curiosity. A console.",
+  "humanDescription" : "These things scream danger.",
+  "hylotlDescription" : "A basic computer-like thing.",
+  
+  "inventoryIcon" : "paiaconsoleicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "paiaconsole.png:<color>.<frame>",
+	  "frames" : 4,
+      "imagePosition" : [-4, 0],
+      "animationCycle" : 0.3,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+
+  "animation" : "/objects/paiaconsole/paiaconsole.animation",
+  "animationParts" : {
+    "beacon" : "paiaconsole.png"
+  },
+  "animationPosition" : [-4, 0],
+
+  "scripts" : [ "/objects/paiaconsole/paiaconsole.lua" ],
+  "scriptDelta" : 5
+
+}

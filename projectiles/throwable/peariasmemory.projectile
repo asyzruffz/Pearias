@@ -1,0 +1,15 @@
+{
+  "projectileName" : "peariasmemory",
+  "frames" : "peariasmemory.png",
+  "animationCycle" : 0.1,
+  "level" : 3,
+  "physics" : "grenadezbomb",
+  "frameNumber" : 4,
+  "pointLight" : false,
+  "speed" : 70,
+  "power" : 0.1,
+  "damageKind" : "default",
+  "emitters" : [ "daggerblue" ]
+}
+
+

@@ -1,0 +1,206 @@
+{
+  "type" : "paia",
+
+  "disableWornArmor" : true,
+  "inateStatusEffects" : [
+    {
+      "kind" : "Protection",
+      "amount" : 1.0
+    }
+  ],
+
+  "scripts" : [
+    "/npcs/main.lua",
+	"/npcs/script/personalAssistState.lua",
+	"/npcs/script/followState.lua",
+	"/npcs/script/healState.lua",
+	"/npcs/script/speakState.lua",
+	"/npcs/script/danceState.lua",
+	"/npcs/script/shopState.lua",
+	"/npcs/script/miscFunctions.lua",
+	"/npcs/script/peariasMemory.lua",
+
+    "/npcs/timers.lua",
+    "/scripts/sensors.lua",
+    "/scripts/stateMachine.lua",
+    "/scripts/util.lua",
+    "/scripts/vec2.lua"
+  ],
+  "scriptDelta" : 5,
+  "scriptConfig" : {
+	"doorHitPoly" : [ [2, -1], [2, 1], [0, 1], [0, -1] ],
+    "gapSensor" : [ [2.0, -4.5] ],
+    "gapFarSideSensors" : [ [3.0, -4.5], [4.0, -4.5], [5.0, -4.5], [6.0, -4.5], [7.0, -4.5], [8.0, -4.5] ],
+    "gapJumpHoldTime" : 0.4,
+	"sunriseAdjust" : 6.0,
+
+	"personalAssist" : {
+	  "waitTime" : 2.0,
+	  "dialogInterval" : 3.0
+	},
+	
+	"follow" : {
+	  "closeDistance" : 4,
+	  "runDistance" : 12,
+	  "teleportDistance" : 30.0,
+	  "searchTime" : 10,
+	  "infoTimeRange" : [ [ [ 0.0, 0.5 ], [ 0.5, 1.0 ] ] ],
+	  "randomInfoInterval" : 60,
+	  "dialog" : {
+        "new" : {
+		  "default" : [ "Pleasure to serve you." ],
+		  "glitch" : [ "Wait, you are my Master? I thought you are like me." ]
+		},
+		"continue" : {
+		  "default" : [ "Sorry, did you wait long?",
+						"..REBOOTING..",
+						"Lead the way!",
+						"I thought I saw something.",
+						"What am I doing again?" ]
+		}
+      }
+	},
+
+	"heal" : {
+      "healRequirement" : 50,
+	  "expGained" : 10,
+      "cooldown" : 30
+    },
+
+	"dance" : {
+      "timeRange" : [ [ 0.042, 0.083 ], [ 0.125, 0.167 ], [ 0.208, 0.250 ],
+					  [ 0.292, 0.333 ], [ 0.375, 0.417 ], [ 0.458, 0.500 ],
+					  [ 0.542, 0.583 ], [ 0.625, 0.667 ], [ 0.708, 0.750 ],
+					  [ 0.792, 0.833 ], [ 0.875, 0.917 ], [ 0.958, 1.000 ] ],
+	  "dancePeriod" : 8,
+      "cooldown" : 60
+    },
+
+	"shop" : {
+	  "waitTime" : 10,
+	  "categories" : [ "paia" ],
+      "priceVarianceRange" : [1, 1],
+	  "defaultSetPrice" : 100,
+      "numItems" : 5,
+	  "dialog" : {
+        "start" : {
+          "default" : [
+            "Welcome to my shop!",
+			"See anything you like?"
+          ]
+        },
+        "end" : {
+          "default" : [
+            "Come back anytime!"
+          ]
+        }
+      },
+	  "items" : {
+		"paia" : [
+          [0, 
+		    [
+            { "item" : { "name" : "redstim" }, "cost" : 400 },
+            { "item" : { "name" : "bread" }, "cost" : 150 }
+			]
+		  ]
+		]
+      }
+	},
+
+    "speak" : {
+      "distanceRange" : [2.0, 4.0],
+	  "speakDistance" : 4,
+	  "ignoreTime" : 3.0,
+      "conversations" : [
+        [
+          [3, "", "My boss is cool." ],
+          [3, "I know.", "" ],
+          [3, "", "I hope I got a raise though." ],
+          [3, "Me too.", "sigh" ]
+        ],
+        [
+          [3, "", "My master is great." ],
+          [3, "You're lucky, man.", "" ],
+          [3, "", "Just kidding!" ],
+          [3, "I got shit ton of work.", "" ]
+        ],
+        [
+          [3, "Knock, knock!", "" ],
+          [3, "", "Who's there?" ],
+          [3, "Doctor", "" ],
+          [3, "", "Doctor Who?" ],
+          [3, "Just the Doctor.", "" ]
+        ]
+      ],
+      "cooldown" : 20
+    }
+  },
+
+  "items" : {
+    "default" : [
+      [0, [
+          {
+            /*"head" : [ { "name" : "scientisthead" } ],*/
+			"chest" : [ { "name" : "apexcommanderjacket" } ],
+			"legs" : [ { "name" : "apexspecialistpants" } ],
+			/*"alt" : [ { "name" : "flashlight" } ],*/
+            "sheathedprimary" : [ [ "generatedsword", 1, { "definition" : "commonaxe" } ] ]
+          }
+        ] ]
+    ]
+  },
+
+  "movementControllerSettings" : {
+    "standingPoly" : [ [-0.75, -2.0], [-0.35, -2.5], [0.35, -2.5], [0.75, -2.0], [0.75, 0.65], [0.35, 1.22], [-0.35, 1.22], [-0.75, 0.65] ],
+    "crouchingPoly" : [ [-0.75, -2.0], [-0.35, -2.5], [0.35, -2.5], [0.75, -2.0], [0.75, -0.5], [0.35, 0], [-0.35, 0], [-0.75, -0.5] ],
+
+    "mass" : 0.6,
+    "jumpSpeed" : 24.0
+  },
+
+  "humanoidTiming" : {
+    // Idle, Walk, Run, Jump, Fall, Swim, SwimIdle, Duck, Sit, Lay
+    "stateCycle" : [1.0, 0.75, 0.75, 0.25, 0.25, 0.50, 0.50, 1.0, 1.0, 1.0],
+    "stateFrames" : [1, 8, 8, 4, 4, 7, 2, 1, 1, 1],
+
+    // EmoteIdle, Blabbering, Shouting, Happy, Sad, NEUTRAL, Laugh, Annoyed, Oh, OOOH, Blink, Wink, Eat, Sleep
+    //          , normal    , caps    , :)   , :'(, :|     , :D   ,        , :o, :O  ,      , ;)
+    "emoteCycle" : [1.0, 0.3, 0.3, 0.3, 1.0, 0.3, 0.5, 1.0, 1.0, 1.0, 1.0, 0.5, 0.3, 1],
+    "emoteFrames" : [1, 2, 2, 2, 5, 2, 2, 2, 2, 3, 3, 5, 2, 2]
+  },
+
+  "statusParameters" : {
+    "baseMaxHealth" : 40,
+    "baseMaxEnergy" : 40,
+    "bodyMaterialKind" : "organic",
+    "damageConfig" : "/damage/damageresponse/npcs.config",
+    "invulnerabilityTime" : 0
+  },
+
+  "persistent" : true,
+
+  "splashConfig" : {
+    "splashSpeedMin" : 10.0,
+    "splashMinWaterLevel" : 0.4,
+    "splashBottomSensor" : [0, -2.0],
+    "splashTopSensor" : [0, 2.0],
+    "numSplashParticles" : 8,
+    "splashYVelocityFactor" : 0.2,
+
+    "splashParticle" : {
+      "type" : "ember",
+      "position" : [0, -1],
+      "finalVelocity" : [0, -20],
+      "approach" : [0, 50],
+      "color" : [60, 150, 224, 100],
+      "size" : 4.0,
+      "timeToLive" : 0.5,
+      "destructionAction" : "shrink",
+      "destructionTime" : 0.2
+    },
+
+    "splashParticleVariance" : {
+      "velocity" : [10, 0]
+    }
+  }
+}

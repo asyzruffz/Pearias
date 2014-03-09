@@ -1,0 +1,9 @@
+{
+  "name" : "body",
+  "category" : "datacreature",
+  "type" : "body",
+
+  "frames" : {
+    "body" : "datacreature.png"
+  }
+}

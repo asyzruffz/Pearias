@@ -1,0 +1,11 @@
+{
+  "name" : "P.A.I.A",
+  "version" : "Beta v. Enraged Koala",
+  "path" : ".",
+  "dependencies" : [ ],
+  "metadata": {
+    "author" : "Ruffz aka Whatiseethere",
+    "description" : "This adds Personal Artificial Intelligence Assistant.",
+    "support_url" : "."
+  }
+}

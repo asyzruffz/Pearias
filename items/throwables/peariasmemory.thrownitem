@@ -1,0 +1,22 @@
+{
+  "itemName" : "peariasmemory",
+  "rarity" : "Common",
+  "inventoryIcon" : "peariasmemoryicon.png",
+  "image" : "peariasmemoryicon.png",
+  "shortdescription" : "Pearias Memory Chip",
+  "description" : "Throw it... Who knows what'll happen?",
+
+  "maxStack" : 1,
+  "ammoUsage" : 1,
+
+  "edgeTrigger" : true,
+  "windupTime" : 0.0,
+  "cooldown" : 0.4,
+
+  "projectileType" : "peariasmemory",
+  "projectileConfig" : {
+    "speed" : 70,
+    "level" : 7
+  }
+}
+

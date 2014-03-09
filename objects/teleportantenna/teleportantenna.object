@@ -1,0 +1,41 @@
+{
+  "objectName" : "teleportantenna",
+  "rarity" : "Common",
+  "description" : "A wireless energy supply. Receive signal for teleportation",
+  "shortdescription" : "Teleport Antenna",
+  "race" : "generic",
+  "category" : "wire",
+  "price" : 800,
+
+  "apexDescription" : "It appears the Miniknog have mastered wireless energy.",
+  "avianDescription" : "This device sends a rustle through my feathers.",
+  "floranDescription" : "Floran fear lightning machine.",
+  "glitchDescription" : "Investigate. A wireless power source.",
+  "humanDescription" : "Wireless power.",
+  "hylotlDescription" : "Such devices are very useful beneath the ocean.",
+
+  "scripts" : [ "/objects/teleportantenna/teleportantenna.lua" ],
+  "scriptDelta" : 5,
+  
+  "inventoryIcon" : "teleportantennaicon.png",
+  "orientations" : [
+    {
+      "dualImage" : "teleportantenna.png:<color>.<frame>",
+
+      "imagePosition" : [-8, 0],
+      "frames" : 4,
+      "animationCycle" : 0.3,
+
+      "spaceScan" : 0.1,
+      "anchors" : [ "bottom" ]
+
+    }
+  ],
+  
+  "animation" : "/objects/teleportantenna/teleportantenna.animation",
+  "animationParts" : {
+    "antenna" : "teleportantenna.png",
+	"signal" : "teleportantenna.png"
+  },
+  "animationPosition" : [-8, 0]
+}
