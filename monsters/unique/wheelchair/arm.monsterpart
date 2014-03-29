@@ -1,0 +1,9 @@
+{
+  "name" : "arm",
+  "category" : "wheelchair",
+  "type" : "arm",
+
+  "frames" : {
+    "arm" : "wheelchair.png"
+  }
+}

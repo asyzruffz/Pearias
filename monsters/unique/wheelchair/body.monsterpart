@@ -1,0 +1,9 @@
+{
+  "name" : "body",
+  "category" : "wheelchair",
+  "type" : "body",
+
+  "frames" : {
+    "body" : "wheelchair.png"
+  }
+}
