@@ -1,0 +1,9 @@
+{
+  "name" : "knight",
+  "category" : "robothorse",
+  "type" : "knight",
+
+  "frames" : {
+    "knight" : "knight.png"
+  }
+}

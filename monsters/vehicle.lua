@@ -1,14 +1,16 @@
 vehicle = {}
 
 function vehicle.init(args)
-  
+  self.rideVehicle = false
+  self.seatbelt = false
 end
 
 function vehicle.update()
   local region = entity.configParameter("metaBoundBox", nil)
+  local 
   
   if self.rideVehicle then
-	setForceRegion(region, force)
+	entity.setForceRegion(region, force)
   end
 end
 

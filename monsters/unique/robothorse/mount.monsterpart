@@ -1,0 +1,9 @@
+{
+  "name" : "mount",
+  "category" : "robothorse",
+  "type" : "mount",
+
+  "frames" : {
+    "mount" : "mount.png"
+  }
+}
