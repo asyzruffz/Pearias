@@ -4,7 +4,7 @@ function personalAssistState.enterWith(args)
   if self.shopOpen then return nil end
   if args.interactArgs == nil then return nil end
   if args.interactArgs.sourceId == 0 then return nil end
-
+  
   return {
     sourceId = args.interactArgs.sourceId,
     timer = entity.configParameter("personalAssist.waitTime"),

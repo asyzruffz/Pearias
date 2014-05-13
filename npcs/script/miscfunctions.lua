@@ -214,6 +214,26 @@ function hasOwner()
 end
 
 --------------------------------------------------------------------------------
+-- Spawn a drone
+function spawnDrone()
+  if self.droneId ~= nil and world.entityExists(self.droneId) then
+	world.callScriptedEntity(self.droneId, "despawn")
+  else
+	self.droneId = world.spawnMonster("scannerdrone", entity.position())
+  end
+end
+
+--------------------------------------------------------------------------------
+-- Let its drone follows
+function isDroneMaster(droneId)
+  if droneId == self.droneId then
+	return true
+  else
+	return false
+  end
+end
+
+--------------------------------------------------------------------------------
 -- Take money and items into inventory
 function storeItem()
   if storage.peariasInventory == nil then
