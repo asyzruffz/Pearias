@@ -121,8 +121,8 @@ end
 function button4()
   local npcTable = world.npcQuery(tech.position(), 20)
   for _, npcId in pairs(npcTable) do
-    world.callScriptedEntity(npcId, "entity.say", "I can't understand that command.")
-	world.callScriptedEntity(npcId, "shouldDie")
+    --world.callScriptedEntity(npcId, "entity.say", "I can't understand that command.")
+	world.callScriptedEntity(npcId, "spawnDrone")
   end
 
   toggleUI()
@@ -318,6 +318,13 @@ function down4()
 end
 
 function send()
+  if data.numberSent == nil then
+	local monsterTable = world.monsterQuery(tech.position(), 20)
+	for _, monsterId in pairs(monsterTable) do
+	  world.callScriptedEntity(monsterId, "scanState.toggleOn")
+	end
+  end
+  
   local npcTable = world.npcQuery(tech.position(), 20)
   for _, npcId in pairs(npcTable) do
     world.callScriptedEntity(npcId, "giveAmount", data.numberSent)

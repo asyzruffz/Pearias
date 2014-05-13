@@ -1,0 +1,9 @@
+{
+  "name" : "dronebody",
+  "category" : "scannerdrone",
+  "type" : "dronebody",
+
+  "frames" : {
+    "dronebody" : "dronebody.png"
+  }
+}

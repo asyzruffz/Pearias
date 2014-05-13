@@ -1,0 +1,22 @@
+{
+  "itemName" : "peariasblueprint",
+  "rarity" : "Common",
+  "inventoryIcon" : "peariasblueprinticon.png",
+  "image" : "peariasblueprinticon.png",
+  "shortdescription" : "Structure Blueprint",
+  "description" : "Contain information of building or structure scanned by Pearias Drone",
+
+  "maxStack" : 1,
+  "ammoUsage" : 0,
+
+  "edgeTrigger" : true,
+  "windupTime" : 0.0,
+  "cooldown" : 0.4,
+
+  "projectileType" : "peariasblueprint",
+  "projectileConfig" : {
+    "speed" : 70,
+    "level" : 7
+  }
+}
+

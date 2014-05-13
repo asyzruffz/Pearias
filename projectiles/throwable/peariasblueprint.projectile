@@ -1,0 +1,17 @@
+{
+  "projectileName" : "peariasblueprint",
+  "frames" : "peariasblueprint.png",
+  "animationCycle" : 0.25,
+  "level" : 3,
+  "physics" : "grenadenobounce",
+  "bounces" : 0,
+  "frameNumber" : 1,
+  "pointLight" : false,
+  "speed" : 70,
+  "power" : 0.1,
+  "damageKind" : "blueprint",
+  "universalDamage" : true,
+  "emitters" : [ "daggerblue" ]
+}
+
+
