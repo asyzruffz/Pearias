@@ -49,5 +49,7 @@
 
    == CHANGELOG ==
 
+  Version 0.2:
+  - New Paia console
   Version 0.1:
   - Created from scratch
