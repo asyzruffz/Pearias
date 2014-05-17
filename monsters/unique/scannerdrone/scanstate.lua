@@ -33,18 +33,19 @@ function scanState.update(dt, stateData)
   for i = 1, width, 1 do
 	for j = 1, height, 1 do
 	  local blockInfo = { foreground = {}, background = {} }
+	  local blockCoordinate = vec2.add(stateData.startPoint, {i - 1,j - 1})
 	  
-	  blockInfo.foreground.type = world.material({stateData.startPoint[1] + i - 1, stateData.startPoint[2] + j - 1}, "foreground")
+	  blockInfo.foreground.type = world.material(blockCoordinate, "foreground")
 	  blockInfo.foreground.coordinate = {i, j}
-	  if not blockInfo.foreground.type then
+	  if not blockInfo.foreground.type or blockInfo.foreground.type == true then
 		blockInfo.foreground = nil
 	  else
 		map.blockAmount = map.blockAmount + 1
 	  end
 	  
-	  blockInfo.background.type = world.material({stateData.startPoint[1] + i - 1, stateData.startPoint[2] + j - 1}, "background")
+	  blockInfo.background.type = world.material(blockCoordinate, "background")
 	  blockInfo.background.coordinate = {i, j}
-	  if not blockInfo.background.type then
+	  if not blockInfo.background.type or blockInfo.background.type == true then
 		blockInfo.background = nil
 	  else
 		map.blockAmount = map.blockAmount + 1
