@@ -39,40 +39,36 @@ function buildState.update(dt, stateData)
   end
   
   -- building block by block
-  local blockCoordinate = vec2.add(stateData.startPoint, {-1,-1})
   for block, info in ipairs(self.blueprint.data.structureData) do
 	-- building background block
 	if info.background ~= nil then
-	  if world.placeMaterial(vec2.add(blockCoordinate, info.background.coordinate), "background", info.background.type, nil, true) then
+	  if world.placeMaterial({stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}, "background", info.background.type, nil, true) then
 		world.logInfo("Built at background %s",info.background.coordinate)
 		
 		-- remove any unnecessary foreground block
 		if info.foreground == nil then
-		  if world.material(vec2.add(blockCoordinate, info.background.coordinate), "foreground") ~= nil then
-			world.spawnProjectile("buildingfexplosion", vec2.add(blockCoordinate, info.background.coordinate), entity.id(), {0,0}, false)
-			--world.damageTiles(vec2.add(blockCoordinate, info.background.coordinate), "foreground", stateData.startPoint, "explosive", 100)
+		  if world.material({stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}, "foreground") ~= nil then
+			world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 100)
 		  end
 		end
 		
 		info.background = nil
-	  elseif world.material(vec2.add(blockCoordinate, info.background.coordinate), "background") ~= nil then
-	  	world.spawnProjectile("buildingbexplosion", vec2.add(blockCoordinate, info.background.coordinate), entity.id(), {0,0}, false)
-		--world.damageTiles(vec2.add(blockCoordinate, info.background.coordinate), "background", stateData.startPoint, "explosive", 100)
+	  elseif world.material({stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}, "background") ~= nil then
+		world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "background", stateData.startPoint, "explosive", 100)
 	  else
-		--world.logInfo("Failed at background %s",info.background.coordinate)
+		--world.logInfo("Failed at background %s", info.background.coordinate)
 	  end
 	end
 	
 	-- building foreground block
 	if info.foreground ~= nil then
-	  if world.placeMaterial(vec2.add(blockCoordinate, info.foreground.coordinate), "foreground", info.foreground.type, nil, true) then
+	  if world.placeMaterial({stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}, "foreground", info.foreground.type, nil, true) then
 		world.logInfo("Built at foreground %s",info.foreground.coordinate)
 		info.foreground = nil
-	  elseif world.material(vec2.add(blockCoordinate, info.foreground.coordinate), "foreground") ~= nil then
-	  	world.spawnProjectile("buildingfexplosion", vec2.add(blockCoordinate, info.foreground.coordinate), entity.id(), {0,0}, false)
-		--world.damageTiles(vec2.add(blockCoordinate, info.foreground.coordinate), "foreground", stateData.startPoint, "explosive", 100)
+	  elseif world.material({stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}, "foreground") ~= nil then
+		world.damageTiles({{stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 100)
 	  else
-		--world.logInfo("Failed at foreground %s",info.foreground.coordinate)
+		--world.logInfo("Failed at foreground %s", info.foreground.coordinate)
 	  end
 	end
 	
@@ -96,6 +92,7 @@ function buildState.update(dt, stateData)
 	  return true
 	else
 	  stateData.oldBalance = balance
+	  world.logInfo("Retry building.")
 	  return false
 	end
   end
