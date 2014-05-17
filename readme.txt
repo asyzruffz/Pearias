@@ -42,6 +42,8 @@
    - Teleport to the player.
   Command:
    - A tech UI to send command to it.
+  Scan & Build:
+   - Summon a drone that can scan a structure and rebuild it.
 
    == DOCUMENT ==
 
