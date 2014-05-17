@@ -19,10 +19,8 @@
   "inventoryIcon" : "paiaconsoleicon.png",
   "orientations" : [
     {
-      "dualImage" : "paiaconsole.png:<color>.<frame>",
-	  "frames" : 4,
+      "dualImage" : "peariaspod.png:<color>.<frame>",
       "imagePosition" : [-4, 0],
-      "animationCycle" : 0.3,
 
       "spaceScan" : 0.1,
       "anchors" : [ "bottom" ]
@@ -30,13 +28,17 @@
     }
   ],
 
-  "animation" : "/objects/paiaconsole/paiaconsole.animation",
+  "animation" : "/objects/paiaconsole/peariaspod.animation",
   "animationParts" : {
-    "beacon" : "paiaconsole.png"
+    "body" : "peariaspod.png"
   },
   "animationPosition" : [-4, 0],
 
-  "scripts" : [ "/objects/paiaconsole/paiaconsole.lua" ],
+  "scripts" : [
+	"/objects/paiaconsole/peariaspod.lua",
+	"/scripts/vec2.lua"
+  ],
+  
+  "spawnOffset" : [1.75, 3],
   "scriptDelta" : 5
-
 }

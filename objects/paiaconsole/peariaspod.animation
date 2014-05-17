@@ -1,7 +1,7 @@
 {
   "animatedParts" : {
     "stateTypes" : {
-      "beaconState" : {
+      "objectState" : {
         "default" : "idle",
         "states" : {
           "idle" : {
@@ -12,19 +12,32 @@
             "frames" : 4,
             "cycle" : 0.7,
             "mode" : "loop"
+          },
+		  "break" : {
+            "frames" : 5,
+            "cycle" : 0.7,
+            "mode" : "transition",
+            "transition" : "done",
+			"properties" : {
+              "immediateSound" : "/sfx/objects/vase_break_large1.wav"
+            }
+          },
+		  "done" : {
+            "frames" : 1,
+            "cycle" : 0.15
           }
         }
       }
     },
 
     "parts" : {
-      "beacon" : {
+      "body" : {
         "properties" : {
           "centered" : false
         },
 
         "partStates" : {
-          "beaconState" : {
+          "objectState" : {
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:default.default"
@@ -34,6 +47,18 @@
             "active" : {
               "properties" : {
                 "image" : "<partImage>:default.<frame>"
+              }
+            },
+
+            "break" : {
+              "properties" : {
+                "image" : "<partImage>:break.<frame>"
+              }
+            },
+
+			"done" : {
+              "properties" : {
+                "image" : "<partImage>:done"
               }
             }
           }
