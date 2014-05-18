@@ -48,13 +48,13 @@ function buildState.update(dt, stateData)
 		-- remove any unnecessary foreground block
 		if info.foreground == nil then
 		  if world.material({stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}, "foreground") ~= nil then
-			world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 100)
+			world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 1000)
 		  end
 		end
 		
 		info.background = nil
 	  elseif world.material({stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}, "background") ~= nil then
-		world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "background", stateData.startPoint, "explosive", 100)
+		world.damageTiles({{stateData.startPoint[1] + info.background.coordinate[1] - 1, stateData.startPoint[2] + info.background.coordinate[2] - 1}}, "background", stateData.startPoint, "explosive", 1000)
 	  else
 		--world.logInfo("Failed at background %s", info.background.coordinate)
 	  end
@@ -66,7 +66,7 @@ function buildState.update(dt, stateData)
 		world.logInfo("Built at foreground %s",info.foreground.coordinate)
 		info.foreground = nil
 	  elseif world.material({stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}, "foreground") ~= nil then
-		world.damageTiles({{stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 100)
+		world.damageTiles({{stateData.startPoint[1] + info.foreground.coordinate[1] - 1, stateData.startPoint[2] + info.foreground.coordinate[2] - 1}}, "foreground", stateData.startPoint, "explosive", 1000)
 	  else
 		--world.logInfo("Failed at foreground %s", info.foreground.coordinate)
 	  end
@@ -78,8 +78,20 @@ function buildState.update(dt, stateData)
 	end
   end
   
-  -- try again if failed
+  -- try again or finished
   if next(self.blueprint.data.structureData) == nil then
+	-- before finishing, destroy where it's supposed to be empty
+	local blocksToDestroyList = {}
+	for key, coordinate in ipairs(self.blueprint.data.emptyData) do
+	  local destroyBlock = {stateData.startPoint[1] + coordinate[1], stateData.startPoint[2] + coordinate[2]}
+	  table.insert(blocksToDestroyList, destroyBlock)
+	end
+	
+	if next(blocksToDestroyList) ~= nil then
+	  world.damageTiles(blocksToDestroyList, "background", stateData.startPoint, "explosive", 1000)
+	  world.damageTiles(blocksToDestroyList, "foreground", stateData.startPoint, "explosive", 1000)
+	end
+	
 	world.logInfo("Finished building")
 	return true
   else

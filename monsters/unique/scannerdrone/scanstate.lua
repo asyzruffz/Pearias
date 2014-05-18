@@ -29,7 +29,7 @@ function scanState.update(dt, stateData)
   local width, height = 30, 30
   
   -- getting info block by block
-  local map = { structureData = {}, blockAmount = 0 }
+  local map = { structureData = {}, emptyData = {}, blockAmount = 0 }
   for i = 1, width, 1 do
 	for j = 1, height, 1 do
 	  local blockInfo = { foreground = {}, background = {} }
@@ -52,6 +52,8 @@ function scanState.update(dt, stateData)
 	  
 	  if next(blockInfo) ~= nil then
 		table.insert(map.structureData, blockInfo)
+	  elseif blockInfo.background == nil and blockInfo.foreground == nil then
+		--table.insert(map.emptyData, {i,j})
 	  end
 	  
 	  --world.logInfo("Coordinate (%s,%s) scanned!", i, j)
