@@ -1,7 +1,6 @@
 {
   "objectName" : "paiaconsole",
   "rarity" : "Common",
-  "objectType" : "wire",
   "description" : "A high-tech Pearias console. Construct a Personal Artificial Intelligence Assistant.",
   "shortdescription" : "P.A.I.A Console",
   "race" : "generic",
