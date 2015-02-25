@@ -17,7 +17,7 @@ end
 function danceState.update(dt, stateData)
   --save starting position
   if self.dancingPosition == nil then
-    self.dancingPosition = entity.position()
+    self.dancingPosition = mcontroller.position()
   end
   
   --function for swinging flashlight
@@ -27,19 +27,19 @@ function danceState.update(dt, stateData)
     if stateData.swingTimer <= 0 then
       local swingPosition = math.random(-3, 3)
       if swingPosition <= 1 and swingPosition > 0 then
-        entity.setAimPosition({entity.position()[1] + 5,  entity.position()[2] + 5})
+        entity.setAimPosition({mcontroller.position()[1] + 5,  mcontroller.position()[2] + 5})
       elseif swingPosition <= 2 and swingPosition > 1 then
-        entity.setAimPosition({entity.position()[1] + 5,  entity.position()[2]})
+        entity.setAimPosition({mcontroller.position()[1] + 5,  mcontroller.position()[2]})
       elseif swingPosition <= 3 and swingPosition > 2 then
-        entity.setAimPosition({entity.position()[1] + 5,  entity.position()[2] - 5})
+        entity.setAimPosition({mcontroller.position()[1] + 5,  mcontroller.position()[2] - 5})
       elseif swingPosition >= -1 and swingPosition < 0 then
-        entity.setAimPosition({entity.position()[1] - 5,  entity.position()[2] + 5})
+        entity.setAimPosition({mcontroller.position()[1] - 5,  mcontroller.position()[2] + 5})
       elseif swingPosition >= -2 and swingPosition < -1 then
-        entity.setAimPosition({entity.position()[1] - 5,  entity.position()[2]})
+        entity.setAimPosition({mcontroller.position()[1] - 5,  mcontroller.position()[2]})
       elseif swingPosition >= -3 and swingPosition < -2 then
-        entity.setAimPosition({entity.position()[1] - 5,  entity.position()[2] - 5})
+        entity.setAimPosition({mcontroller.position()[1] - 5,  mcontroller.position()[2] - 5})
       else
-        entity.setAimPosition({entity.position()[1] + 0,  entity.position()[2] + 5})
+        entity.setAimPosition({mcontroller.position()[1] + 0,  mcontroller.position()[2] + 5})
       end
       swingPosition = nil
       stateData.swingTimer = 0.2
@@ -75,9 +75,9 @@ function danceState.update(dt, stateData)
 	  local length = 2
 	  local step = math.random(0, 2) - 1
       
-	  if entity.position ~= self.dancingPosition and self.doneStep then
+	  if mcontroller.position ~= self.dancingPosition and self.doneStep then
 	    moveTo(self.dancingPosition, dt, { run = true })
-		if entity.position == self.dancingPosition then
+		if mcontroller.position == self.dancingPosition then
 		  self.doneStep = false
 		end
 	  else

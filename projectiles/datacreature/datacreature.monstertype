@@ -53,18 +53,41 @@
       "statusEffects" : [ ]
     },
 
-    "statusParameters" : {
-      "baseMaxHealth" : 0,
-      "bodyMaterialKind" : "organic",
-      "damageConfig" : "/damage/damageresponse/allergen.config"
-    },
+    "statusSettings" : {
+      "statusProperties" : {
+        "targetMaterialKind" : "organic"
+      },
 
-    "inateStatusEffects" : [
-      {
-        "kind" : "Protection",
-        "amount" : 1.0
+      "appliesEnvironmentStatusEffects" : false,
+      "minimumLiquidStatusEffectPercentage" : 0,
+
+      "persistentEffectCategories" : [
+        "innate"
+      ],
+
+      "primaryScriptSources" : [ ],
+      "primaryScriptDelta" : 0,
+      
+      "stats" : {
+        "maxHealth" : {
+          "baseValue" : 0
+        },
+        "protection" : {
+          "baseValue" : 1.0
+        },
+        "healthRegen" : {
+          "baseValue" : 0.0
+        }
+      },
+
+      "resources" : {
+        "health" : {
+          "maxStat" : "maxHealth",
+          "deltaStat" : "healthRegen",
+          "defaultPercentage" : 100
+        }
       }
-    ],
+    },
 	
     "mouthOffset" : [0, 0],
     "feetOffset" : [0, 0],

@@ -18,8 +18,8 @@ function personalAssistState.update(dt, stateData)
   local sourcePosition = world.entityPosition(stateData.sourceId)
   if sourcePosition == nil then return true end
 
-  local toSource = world.distance(sourcePosition, entity.position())
-  setFacingDirection(toSource[1])
+  local toSource = world.distance(sourcePosition, mcontroller.position())
+  controlFace(toSource[1])
 
   local sayOnce = stateData.sayOnce
   if stateData.dialogInterval >= entity.configParameter("personalAssist.dialogInterval") then

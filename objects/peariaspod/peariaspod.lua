@@ -5,7 +5,7 @@ function init(args)
   entity.setAnimationState("objectState", "active")
 end
 
-function main()
+function update(dt)
   local animation = entity.animationState("objectState")
   
   if animation == "break" then

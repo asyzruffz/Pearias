@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 -- Create a clone of Pearias
 function clone()
-  local spawnPosition = {entity.position()[1] + 0, entity.position()[2] + 3}
+  local spawnPosition = {mcontroller.position()[1] + 0, entity.position()[2] + 3}
   local species = entity.species(entity.id())
   local name = "paia"
   local level = entity.level()
@@ -44,7 +44,7 @@ function flashlightOn(switch, colour)
     choosenFlashlight = "flashlight"
   end
 
-  local dark = world.lightLevel({entity.position()[1] - 0.5, entity.position()[2] + 5}) < 0.2
+  local dark = world.lightLevel({mcontroller.position()[1] - 0.5, mcontroller.position()[2] + 5}) < 0.2
   if dark or flashlight then
     entity.setItemSlot("alt", choosenFlashlight)
 	flashlight = true
@@ -201,7 +201,7 @@ end
 --------------------------------------------------------------------------------
 -- Called when a memory chip is taken into another Pearias inventory
 function overwriteMemory(dna)
-  world.spawnLiquid(entity.position(), 3, 100)
+  world.spawnLiquid(mcontroller.position(), 3, 100)
   --world.logInfo("DNA is = %s. Type = %s.", dna.dataMemory, type(dna.dataMemory))
   local newSpawnId = world.spawnNpc(entity.toAbsolutePosition({ 0.0, 3.0 }), dna.dataMemory.species, dna.dataMemory.npcType, (dna.dataMemory.level or entity.level()), tonumber(dna.dataMemory.seed))
   world.callScriptedEntity(newSpawnId, "loadData", dna.dataMemory)
@@ -220,7 +220,7 @@ function storeItem()
     storage.peariasInventory = {}
   end
   
-  local itemsScanned = world.itemDropQuery(entity.position(), 6)
+  local itemsScanned = world.itemDropQuery(mcontroller.position(), 6)
   local temporary
   if itemsScanned ~= nil then
 	for _, item in pairs(itemsScanned) do
@@ -318,7 +318,7 @@ function freeInventory()
     entity.say("My inventory is empty.")
   end
   
-  local position = entity.position()
+  local position = mcontroller.position()
 
   if storage.peariasInventory.slot1 ~= nil then
     if next(storage.peariasInventory.slot1.data) == nil then
@@ -391,10 +391,10 @@ function monsterKilled(entityId)
 end
 
 --------------------------------------------------------------------------------
-function shouldDie()
-  world.spawnLiquid(entity.position(), 3, 100)
-  return self.dead
-end
+--function shouldDie()
+  --world.spawnLiquid(mcontroller.position(), 3, 100)
+  --return false--self.dead
+--end
 
 --------------------------------------------------------------------------------
 -- Called from C++ when dead

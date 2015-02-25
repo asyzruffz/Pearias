@@ -3,7 +3,7 @@ healState = {}
 function healState.enter()
   if not hasOwner() then return nil end
   if not world.entityExists(self.ownerEntityId) then return nil end
-  if world.info() == nil then return nil end  -- don't heal on ship
+  -- if world.info() == nil then return nil end  -- don't heal on ship
 
   local currentHp = world.entityHealth(self.ownerEntityId)[1]
   local maxHp = world.entityHealth(self.ownerEntityId)[2]
@@ -32,7 +32,7 @@ end
 
 function healState.update(dt, stateData)
   if not world.entityExists(stateData.ownerId) then return true end
-  local distance = world.magnitude(entity.position(), world.entityPosition(stateData.ownerId))
+  local distance = world.magnitude(mcontroller.position(), world.entityPosition(stateData.ownerId))
   local healRequirement = entity.configParameter("heal.healRequirement", 20)
 
   -- Keep the owner in sight
@@ -66,7 +66,7 @@ function healState.update(dt, stateData)
     moveTo(world.entityPosition(stateData.ownerId), dt, { run = stateData.running })
 	return false
   else
-    world.spawnProjectile("healingstatusprojectile", entity.position(), entity.id(), {0, 0}, true)
+    world.spawnProjectile("healingstatusprojectile", mcontroller.position(), entity.id(), {0, 0}, true)
 	gainExp(entity.configParameter("heal.expGained", 5))
 	self.healCooldown = entity.configParameter("heal.cooldown") + 3
 	return true, entity.configParameter("heal.cooldown")

@@ -7,7 +7,7 @@ function followState.inRange()
 	return true
   elseif world.entityExists(self.ownerEntityId) then
 	ownerPosition = world.entityPosition(self.ownerEntityId)
-	return world.magnitude(entity.position(), ownerPosition) < maxRange
+	return world.magnitude(mcontroller.position(), ownerPosition) < maxRange
   end
   return false
 end
@@ -20,7 +20,7 @@ function followState.enter()
 		self.savingSuccess = false
 		return nil
 	  end
-	  local playerUuids = world.playerQuery(entity.position(), 10)
+	  local playerUuids = world.playerQuery(mcontroller.position(), 10)
       for _, playerId in pairs(playerUuids) do
 		storage.peariasOwnerUuid = world.entityUuid(playerId)
 		entity.say("Pleasure to serve you, " .. world.entityName(playerId) .. ".")
@@ -35,7 +35,7 @@ function followState.enter()
 
   -- Recognise own master
   if self.ownerEntityId ~= nil then
-    local playerIds = world.playerQuery(entity.position(), 50)
+    local playerIds = world.playerQuery(mcontroller.position(), 50)
 	local isMaster = true
     for _, playerId in pairs(playerIds) do
 	  if playerId ~= self.ownerEntityId then
@@ -50,7 +50,7 @@ function followState.enter()
 
   -- Translate owner uuid to entity id
   if self.ownerEntityId == nil then
-    local playerIds = world.playerQuery(entity.position(), 50)
+    local playerIds = world.playerQuery(mcontroller.position(), 50)
     for _, playerId in pairs(playerIds) do
       if world.entityUuid(playerId) == storage.peariasOwnerUuid then
         self.ownerEntityId = playerId
@@ -89,7 +89,7 @@ function followState.update(dt, stateData)
   local runDistance = entity.configParameter("follow.runDistance", 10)
   local teleportDistance = entity.configParameter("follow.teleportDistance", 20)
 
-  local position = entity.position()
+  local position = mcontroller.position()
   local ownerPosition = world.entityPosition(stateData.ownerId)
   local toOwner = world.distance(ownerPosition, position)
   local distance = world.magnitude(toOwner)
@@ -101,7 +101,8 @@ function followState.update(dt, stateData)
   if speakState ~= nil then
     local speakDistance = entity.configParameter("speak.speakDistance", nil)
     if speakDistance ~= nil then
-      if speakState.initiateChat(position, vec2.add({ speakDistance * entity.facingDirection(), 0 }, position)) then
+	  -- if speakState.initiateChat(position, vec2.add({ speakDistance * entity.facingDirection(), 0 }, position)) then
+	  if speakState.initiateChat(position, vec2.add({ speakDistance * 1, 0 }, position)) then
         return true
       end
     end
@@ -164,15 +165,15 @@ function followState.update(dt, stateData)
     end
   else
     if entityInSight then
-      entity.setFacingDirection(toOwner[1])
+      controlFace(toOwner[1])
       entity.setAimPosition(ownerPosition)
 
       if distance < closeDistance then
         moveToSide = util.toDirection(-toOwner[1])
 		-- Make sure we're not standing on a platform just above the owner
-        if toOwner[2] < -1.5 then
-          entity.moveDown()
-        end
+        --if toOwner[2] < -1.5 then
+        --  entity.moveDown()
+        --end
         return false
       end
     end
@@ -188,7 +189,7 @@ function followState.update(dt, stateData)
 end
 
 function followState.teleport(dt)
-  local position = entity.position()
+  local position = mcontroller.position()
   local availableObjects = world.objectQuery(position, 100)
   
   local portId
@@ -208,7 +209,7 @@ function followState.teleport(dt)
 	  moveTo(portPosition, dt, { run = true })
 	
 	  if distanceToPort <= 8 and world.callScriptedEntity(portId, "antennaEmpty") then
-		world.spawnLiquid(entity.position(), 3, 100)
+		world.spawnLiquid(mcontroller.position(), 3, 100)
 		--world.logInfo("I suicide by spawning lava!")
 	  end
 

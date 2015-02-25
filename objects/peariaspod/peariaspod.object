@@ -39,5 +39,6 @@
   ],
   
   "spawnOffset" : [1.75, 3],
+  
   "scriptDelta" : 5
 }

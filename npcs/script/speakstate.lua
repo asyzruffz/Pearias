@@ -60,7 +60,7 @@ function speakState.update(dt, stateData)
   
   self.stopSpeaking = false
 
-  local toPartner = world.distance(partnerPosition, entity.position())
+  local toPartner = world.distance(partnerPosition, mcontroller.position())
   local direction = util.toDirection(toPartner[1])
 
   local distance = world.magnitude(toPartner)

@@ -40,7 +40,7 @@ function shopState.update(dt, stateData)
 	return true 
   end
 
-  local toSource = world.distance(sourcePosition, entity.position())
+  local toSource = world.distance(sourcePosition, mcontroller.position())
   setFacingDirection(toSource[1])
   self.tradingConfig = shopState.buildTradingConfig()
 
