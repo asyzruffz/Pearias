@@ -1,5 +1,0 @@
-{
-  "script" : "commandconsole.lua",
-  "actions" : [ "uitoggle" ],
-  "animator" : "commandconsole.animation"
-}

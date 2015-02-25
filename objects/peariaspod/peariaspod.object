@@ -1,5 +1,5 @@
 {
-  "objectName" : "paiaconsole",
+  "objectName" : "peariaspod",
   "rarity" : "Common",
   "description" : "A high-tech Pearias console. Construct a Personal Artificial Intelligence Assistant.",
   "shortdescription" : "P.A.I.A Console",
@@ -15,7 +15,7 @@
   "humanDescription" : "These things scream danger.",
   "hylotlDescription" : "A basic computer-like thing.",
   
-  "inventoryIcon" : "paiaconsoleicon.png",
+  "inventoryIcon" : "peariaspodicon.png",
   "orientations" : [
     {
       "dualImage" : "peariaspod.png:<color>.<frame>",
@@ -27,14 +27,14 @@
     }
   ],
 
-  "animation" : "/objects/paiaconsole/peariaspod.animation",
+  "animation" : "/objects/peariaspod/peariaspod.animation",
   "animationParts" : {
     "body" : "peariaspod.png"
   },
   "animationPosition" : [-4, 0],
 
   "scripts" : [
-	"/objects/paiaconsole/peariaspod.lua",
+	"/objects/peariaspod/peariaspod.lua",
 	"/scripts/vec2.lua"
   ],
   

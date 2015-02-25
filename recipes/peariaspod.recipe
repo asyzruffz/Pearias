@@ -3,7 +3,7 @@
     { "item" : "money", "count" : 1 }
   ],
   "output" : {
-    "item" : "paiaconsole",
+    "item" : "peariaspod",
     "count" : 1
   },
   "groups" : [ "mod", "plain", "paia", "objects", "all" ]
